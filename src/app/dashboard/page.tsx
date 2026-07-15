@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Person, Envelope, Calendar, ShieldCheck, Gear } from '@gravity-ui/icons';
 
 import { redirect } from 'next/navigation';
+import BarChar from '@/components/dashboard/BarChar';
 
 const DashboardPage = async () => {
   const session = await auth.api.getSession({
@@ -23,7 +24,8 @@ const DashboardPage = async () => {
     : 'N/A';
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white p-4 md:p-8 max-w-6xl mx-auto">
+    <div className="">
+        <div className="min-h-screen bg-neutral-950 text-white p-4 md:p-8 max-w-6xl mx-auto">
       {/* Welcome Banner */}
       <div className="mb-8 p-6 bg-gradient-to-r from-red-950/40 via-neutral-900 to-transparent border border-red-500/20 rounded-2xl shadow-[0_0_15px_rgba(239,68,68,0.05)]">
         <h1 className="text-2xl md:text-4xl font-black tracking-tight uppercase">
@@ -109,6 +111,9 @@ const DashboardPage = async () => {
           </div>
         </div>
       </div>
+    </div>
+    {/*  */}
+    <BarChar/>
     </div>
   );
 };
