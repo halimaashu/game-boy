@@ -1,5 +1,5 @@
 import Banner from "@/components/Banner";
-import FeaturedGams from "@/components/FeaturedClass";
+import FeaturedGams from "@/components/FeaturedGams";
 import MarqueAds from "@/components/MarqueAds";
 
 

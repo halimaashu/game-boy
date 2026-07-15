@@ -50,10 +50,7 @@ const NavBar = () => {
   const loggedInRoutes = [
     { label: "Home", href: "/" },
     { label: "Community posts", href: "/community" },
-
     { label: "Add community Post", href: "/Add-post" },
-    { label: "Games", href: "/games" },
-    { label: "Live Streams", href: "/streams" },
     { label: "Dashboard", href: "/dashboard" },
   ];
 

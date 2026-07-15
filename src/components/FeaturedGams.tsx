@@ -3,6 +3,8 @@ import { Post } from "@/type/post";
 import GamePostCard from "./comunity/GamePostCard";
 // If you want to use a retro icon for the header:
 import { LayoutRows } from "@gravity-ui/icons";
+import Link from "next/link";
+import { Button } from "@heroui/react";
 
 const FeaturedGams = async () => {
   // Fetch all posts/gems
@@ -42,6 +44,11 @@ const FeaturedGams = async () => {
               <GamePostCard post={post} />
             </div>
           ))}
+          <Link className="text-white mt-5" href={"/community"}>
+          <Button variant="danger">
+            Browse All game
+          </Button>
+          </Link>
         </div>
       ) : (
         /* --- Empty State --- */
