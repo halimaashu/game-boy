@@ -17,7 +17,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#16161a] border-t-4 border-[#72757e]/20 text-[#72757e] font-mono tracking-wide relative overflow-hidden">
+    <footer className="bg-[#16161a] border-t-4 border-[#72757e]/20 text-[#72757e] font-mono tracking-wide relative overflow-hidden h-screen">
       
       {/* Visual Accent Top Line - Subtle Neon Glow Indicator */}
       <div className="w-full h-[2px] bg-[#DC143C] shadow-[0_0_10px_rgba(220,20,60,0.7)]" />

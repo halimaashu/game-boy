@@ -1,11 +1,15 @@
 "use client";
 
+import { authClient } from '@/lib/auth-client';
+import { Button } from '@heroui/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { IoGameController, IoMenu, IoClose } from "react-icons/io5";
 
 // Custom scroll hook integrated inside the file for simplicity
 function useScrollDirection() {
+
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -24,9 +28,16 @@ function useScrollDirection() {
 }
 
 const NavBar = () => {
+  const { data: session } = authClient.useSession()
+  console.log(session?.user)
   const isHidden = useScrollDirection();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!session);
+  const handleLogout = async() => {
+    alert("Logging out... (This is a placeholder action. Implement actual logout logic here.)");
+    await authClient.signOut();
+    setIsLoggedIn(false);
+  }
 
   // Routes configurations
   const loggedOutRoutes = [
@@ -36,11 +47,11 @@ const NavBar = () => {
   ];
 
   const loggedInRoutes = [
-    { label: "Dashboard", href: "#dashboard" },
-    { label: "My Library", href: "#library" },
-    { label: "Store", href: "#store" },
-    { label: "Live Streams", href: "#streams" },
-    { label: "Community", href: "#community" },
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Add community Post", href: "/Add-post" },
+    { label: "Games", href: "/games" },
+    { label: "Live Streams", href: "/streams" },
+    { label: "Community posts", href: "/community" },
   ];
 
   const currentRoutes = isLoggedIn ? loggedInRoutes : loggedOutRoutes;
@@ -82,12 +93,12 @@ const NavBar = () => {
 
         {/* Right Side: Auth Action Item */}
         <div className="hidden md:flex items-center">
-          <button
+          <div
             onClick={() => setIsLoggedIn(!isLoggedIn)}
-            className="bg-[#DC143C] text-white px-4 py-2 text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#b30e2f] transition-all shadow-[0_0_15px_rgba(220,20,60,0.3)] hover:shadow-[0_0_25px_rgba(220,20,60,0.6)]"
+            className="bg-[#DC143C] text-white  text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#b30e2f] transition-all shadow-[0_0_15px_rgba(220,20,60,0.3)] hover:shadow-[0_0_25px_rgba(220,20,60,0.6)]"
           >
-            {isLoggedIn ? "LOG OUT" : "LOGIN"}
-          </button>
+            {isLoggedIn ?<Button onClick={handleLogout} variant='outline' className={"rounded-none"}>LOG OUT</Button> :<Link href={"/login"}> <Button variant='outline' className={"rounded-none"}>LOGIN</Button></Link>}
+          </div>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -120,15 +131,15 @@ const NavBar = () => {
         
         {/* Mobile Button Action */}
         <div className="pt-2">
-          <button
+          <div
             onClick={() => {
               setIsLoggedIn(!isLoggedIn);
               setIsOpen(false);
             }}
             className="w-full text-center bg-[#DC143C] text-white py-2.5 text-sm font-mono font-bold tracking-widest uppercase hover:bg-[#b30e2f]"
           >
-            {isLoggedIn ? "LOG OUT" : "LOGIN"}
-          </button>
+            {isLoggedIn ?<Button onClick={handleLogout} variant='outline' className={"rounded-none"}>LOG OUT</Button> :<Link href={"/login"}> <Button variant='outline' className={"rounded-none"}>LOGIN</Button></Link>}
+          </div>
         </div>
       </div>
     </nav>
