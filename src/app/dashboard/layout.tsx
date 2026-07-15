@@ -1,9 +1,11 @@
-import React from 'react';
-
-const DashboardLayout = () => {
+import React, { ReactNode } from 'react';
+interface DashboardLayoutProps {
+  children: ReactNode;
+}
+const DashboardLayout = ({children}:DashboardLayoutProps) => {
     return (
         <div>
-            this is dashboard layout
+            {children}
         </div>
     );
 };
