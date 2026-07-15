@@ -149,13 +149,7 @@ export default function GameDetailClient({
               <Button
               
                 onPress={handleLike}
-                startContent={
-                  hasLiked ? (
-                    <HeartFill className="w-4 h-4 text-white" />
-                  ) : (
-                    <Heart className="w-4 h-4 text-secondary" />
-                  )
-                }
+                
                 className="font-medium"
               >
                 {likes} Likes
