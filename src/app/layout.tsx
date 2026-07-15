@@ -29,13 +29,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
       data-theme="dark"
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col ">
         <header>
           <NavBar />
         </header>
        
-        <main>
-           {children}
+        <main className="bg-black">
+         <div className="w-11/12 mx-auto">
+            {children}
+         </div>
 
         </main>
         <footer>

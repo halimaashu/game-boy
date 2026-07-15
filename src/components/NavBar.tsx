@@ -1,15 +1,14 @@
 "use client";
 
-import { authClient } from '@/lib/auth-client';
-import { Button } from '@heroui/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@heroui/react";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
 import { IoGameController, IoMenu, IoClose } from "react-icons/io5";
 
 // Custom scroll hook integrated inside the file for simplicity
 function useScrollDirection() {
-
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -28,16 +27,18 @@ function useScrollDirection() {
 }
 
 const NavBar = () => {
-  const { data: session } = authClient.useSession()
-  console.log(session?.user)
+  const { data: session } = authClient.useSession();
+  console.log(session?.user);
   const isHidden = useScrollDirection();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!session);
-  const handleLogout = async() => {
-    alert("Logging out... (This is a placeholder action. Implement actual logout logic here.)");
+  const handleLogout = async () => {
+    alert(
+      "Logging out... (This is a placeholder action. Implement actual logout logic here.)",
+    );
     await authClient.signOut();
     setIsLoggedIn(false);
-  }
+  };
 
   // Routes configurations
   const loggedOutRoutes = [
@@ -47,11 +48,13 @@ const NavBar = () => {
   ];
 
   const loggedInRoutes = [
-    { label: "Dashboard", href: "/dashboard" },
+    { label: "Home", href: "/" },
+    { label: "Community posts", href: "/community" },
+
     { label: "Add community Post", href: "/Add-post" },
     { label: "Games", href: "/games" },
     { label: "Live Streams", href: "/streams" },
-    { label: "Community posts", href: "/community" },
+    { label: "Dashboard", href: "/dashboard" },
   ];
 
   const currentRoutes = isLoggedIn ? loggedInRoutes : loggedOutRoutes;
@@ -64,7 +67,6 @@ const NavBar = () => {
     >
       {/* Navbar Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
         {/* Left Side: Brand Logo */}
         <div className="flex items-center gap-2 cursor-pointer group">
           <Image
@@ -97,7 +99,22 @@ const NavBar = () => {
             onClick={() => setIsLoggedIn(!isLoggedIn)}
             className="bg-[#DC143C] text-white  text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#b30e2f] transition-all shadow-[0_0_15px_rgba(220,20,60,0.3)] hover:shadow-[0_0_25px_rgba(220,20,60,0.6)]"
           >
-            {isLoggedIn ?<Button onClick={handleLogout} variant='outline' className={"rounded-none"}>LOG OUT</Button> :<Link href={"/login"}> <Button variant='outline' className={"rounded-none"}>LOGIN</Button></Link>}
+            {isLoggedIn ? (
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className={"rounded-none"}
+              >
+                LOG OUT
+              </Button>
+            ) : (
+              <Link href={"/login"}>
+                {" "}
+                <Button variant="outline" className={"rounded-none"}>
+                  LOGIN
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -115,7 +132,9 @@ const NavBar = () => {
       {/* Mobile Drawer Menu Layer */}
       <div
         className={`md:hidden absolute top-16 left-0 w-full bg-[#16161a] border-b border-[#72757e]/20 transition-all duration-300 ease-in-out px-4 py-4 space-y-3 shadow-xl ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+          isOpen
+            ? "opacity-100 visible"
+            : "opacity-0 invisible pointer-events-none"
         }`}
       >
         {currentRoutes.map((route, idx) => (
@@ -125,10 +144,11 @@ const NavBar = () => {
             onClick={() => setIsOpen(false)}
             className="block text-[#72757e] font-mono tracking-widest uppercase text-base hover:text-[#DC143C] py-2 border-b border-[#72757e]/10 last:border-none"
           >
-            {`> `}{route.label}
+            {`> `}
+            {route.label}
           </a>
         ))}
-        
+
         {/* Mobile Button Action */}
         <div className="pt-2">
           <div
@@ -138,7 +158,22 @@ const NavBar = () => {
             }}
             className="w-full text-center bg-[#DC143C] text-white py-2.5 text-sm font-mono font-bold tracking-widest uppercase hover:bg-[#b30e2f]"
           >
-            {isLoggedIn ?<Button onClick={handleLogout} variant='outline' className={"rounded-none"}>LOG OUT</Button> :<Link href={"/login"}> <Button variant='outline' className={"rounded-none"}>LOGIN</Button></Link>}
+            {isLoggedIn ? (
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className={"rounded-none"}
+              >
+                LOG OUT
+              </Button>
+            ) : (
+              <Link href={"/login"}>
+                {" "}
+                <Button variant="outline" className={"rounded-none"}>
+                  LOGIN
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
