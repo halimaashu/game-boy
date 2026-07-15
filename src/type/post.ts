@@ -10,6 +10,7 @@ export interface Post {
   description: string;
   gameName: string;
   authorName: string;
+  authorEmail:string;
   createAt: string;
   comment: Comment[];
   authorImage:string;
