@@ -55,7 +55,7 @@ export default function SearchAndFilter() {
         <Button 
           type="submit" 
         
-          className="font-bold bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-600/20"
+          className="font-bold bg-violet-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-600/20"
         >
           Search
         </Button>

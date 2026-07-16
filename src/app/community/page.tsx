@@ -16,7 +16,7 @@ const CommunityPage = async ({ searchParams }: PageProps) => {
 
   return (
     <div className="bg-black text-white min-h-screen p-4">
-      <h1 className="text-3xl font-black text-center p-4 mb-2 tracking-wide bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+      <h1 className="text-3xl font-black text-center p-4 mb-2 tracking-wide bg-gradient-to-r from-blue-400 to-red-600 bg-clip-text text-transparent">
         COMMUNITY POSTS
       </h1>
 
