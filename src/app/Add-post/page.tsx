@@ -30,6 +30,9 @@ const AddCommunityPostPage = () => {
     if (postData) {
       alert("post success");
     }
+    if(!postData){
+      alert("faild to post")
+    }
 
    
   };
@@ -69,9 +72,10 @@ const AddCommunityPostPage = () => {
           {/* Thumbnail */}
           <TextField isRequired name="thumbnail">
             <Label className="text-sm font-semibold text-zinc-300">
+
               Thumbnail URL
             </Label>
-            <Input placeholder="https://example.com/image.jpg" className={"text-white"} />
+            <Input type="url" placeholder="https://example.com/image.jpg" className={"text-white"} />
           </TextField>
 
           {/* Description */}

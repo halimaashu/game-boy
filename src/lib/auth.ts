@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { jwt } from "better-auth/plugins";
 
 const client = new MongoClient(process.env.MONGODB_URI || "mongodb://localhost:27017");
 const db = client.db("game-boy");
@@ -14,4 +15,14 @@ export const auth = betterAuth({
   emailAndPassword: { 
     enabled: true, 
   }, 
+  session:{
+    cookieCache:{
+      enabled:true,
+      strategy:'jwt',
+      maxAge:60*24*60
+    }
+  },
+  plugins:[
+    jwt()
+  ]
 });
