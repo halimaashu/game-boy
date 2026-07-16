@@ -15,8 +15,8 @@ const DashboardPage = async () => {
     if (!session?.user) {
     redirect('/login'); 
   }
+  const user:User=session?.user;
   
-  const user:User = session?.user;
   
   // Format the JavaScript Date nicely for the UI
   const joinDate = user?.createdAt

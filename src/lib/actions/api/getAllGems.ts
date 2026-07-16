@@ -1,6 +1,6 @@
 import { getData } from "../mutation/get"
 
-export const allGems=async(search:string|undefined)=>{
+export const allGems=async(search?:string|undefined)=>{
     if(search){
        return await  getData(`/posts?search=${search}`) 
     }

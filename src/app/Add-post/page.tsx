@@ -15,9 +15,9 @@ import {
 import { postCommunityPost } from "@/lib/actions/communitypost";
 import { authClient } from "@/lib/auth-client";
 const AddCommunityPostPage = () => {
-      const { data: session } = authClient.useSession()
-      const user=session?.user;
-      console.log(user,"from my post page")
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  console.log(user, "");
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -25,16 +25,21 @@ const AddCommunityPostPage = () => {
     formData.forEach((value, key) => {
       data[key] = value.toString();
     });
-    const allDataForPost={...data,authorImage:user?.image,authorName:user?.name,authorEmail:user?.email,like:0,comment:[]}
+    const allDataForPost = {
+      ...data,
+      authorImage: user?.image,
+      authorName: user?.name,
+      authorEmail: user?.email,
+      like: 0,
+      comment: [],
+    };
     const postData = await postCommunityPost(allDataForPost);
     if (postData) {
       alert("post success");
     }
-    if(!postData){
-      alert("faild to post")
+    if (!postData) {
+      alert("faild to post");
     }
-
-   
   };
 
   return (
@@ -58,7 +63,7 @@ const AddCommunityPostPage = () => {
             <Label className="text-sm font-semibold text-zinc-300">
               Post Title
             </Label>
-            <Input placeholder="Enter post title"  className={"text-white"}/>
+            <Input placeholder="Enter post title" className={"text-white"} />
           </TextField>
 
           {/* Game Name */}
@@ -66,16 +71,22 @@ const AddCommunityPostPage = () => {
             <Label className="text-sm font-semibold text-zinc-300">
               Game Name
             </Label>
-            <Input placeholder="Valorant, PUBG, Free Fire..." className={"text-white"}/>
+            <Input
+              placeholder="Valorant, PUBG, Free Fire..."
+              className={"text-white"}
+            />
           </TextField>
 
           {/* Thumbnail */}
           <TextField isRequired name="thumbnail">
             <Label className="text-sm font-semibold text-zinc-300">
-
               Thumbnail URL
             </Label>
-            <Input type="url" placeholder="https://example.com/image.jpg" className={"text-white"} />
+            <Input
+              type="url"
+              placeholder="https://example.com/image.jpg"
+              className={"text-white"}
+            />
           </TextField>
 
           {/* Description */}
@@ -83,7 +94,10 @@ const AddCommunityPostPage = () => {
             <Label className="text-sm font-semibold text-zinc-300">
               Description
             </Label>
-            <Input placeholder="Write your community post..." className={"text-white"} />
+            <Input
+              placeholder="Write your community post..."
+              className={"text-white"}
+            />
           </TextField>
 
           {/* Category */}
@@ -142,7 +156,7 @@ const AddCommunityPostPage = () => {
             <Label className="text-white font-semibold">Game Mode</Label>
 
             <div className="grid grid-cols-2 gap-3">
-              <Radio  value="Online">
+              <Radio value="Online">
                 <Radio.Content className={"text-white"}>
                   <Radio.Control>
                     <Radio.Indicator />
@@ -167,13 +181,19 @@ const AddCommunityPostPage = () => {
             <Label className="text-sm font-semibold text-zinc-300">
               Platform
             </Label>
-            <Input placeholder="PC / Mobile / PlayStation / Xbox"className={"text-white"} />
+            <Input
+              placeholder="PC / Mobile / PlayStation / Xbox"
+              className={"text-white"}
+            />
           </TextField>
 
           {/* Tags */}
           <TextField name="tags">
             <Label className="text-sm font-semibold text-zinc-300">Tags</Label>
-            <Input placeholder="FPS, Ranked, Tournament" className={"text-white"} />
+            <Input
+              placeholder="FPS, Ranked, Tournament"
+              className={"text-white"}
+            />
             <Description className="text-xs text-zinc-400">
               Separate multiple tags with commas.
             </Description>
