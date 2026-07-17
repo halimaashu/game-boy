@@ -3,10 +3,12 @@ import { User } from '@/type/user';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 // Gravity UI Icons for an arcade touch
-import { Person, Envelope, Calendar, ShieldCheck, Gear } from '@gravity-ui/icons';
+import { Person, Envelope, Calendar, ShieldCheck, Gear, WalletDot, ArrowRight } from '@gravity-ui/icons';
 
 import { redirect } from 'next/navigation';
 import BarChar from '@/components/dashboard/BarChar';
+import Link from 'next/link';
+import { Button } from '@heroui/react';
 
 const DashboardPage = async () => {
   const session = await auth.api.getSession({
@@ -112,7 +114,20 @@ const DashboardPage = async () => {
         </div>
       </div>
     </div>
-    {/*  */}
+    {/* button to manage class page linked */}
+
+    <div className="flex flex-col gap-6 items-center  mb-5 mt-2 bg-neutral-900 shadow-xl p-4 rounded-md">
+      <h1 className='text-red-600 font-bold text-3xl'>My Community Posts</h1>
+      <Link href={"/dashboard/manageGames"}>
+      <h1 className='text-white font-medium text-2xl flex items-center mt-3 gap-2'><WalletDot className='text-green-600 font-light ' /> Total Posts</h1>
+      <Button className={"text-white bg-red-600 rounded-none mt-5 flex items-center gap-2"}>
+        Manage my Community Post <ArrowRight className='text-green-700 font-bold'/>
+      </Button>
+      </Link>
+
+
+    </div>
+{/* this is dashboard reachrts */}
     <BarChar/>
     </div>
   );

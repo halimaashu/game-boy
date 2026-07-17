@@ -10,3 +10,10 @@ return await  getData("/posts")
 export const games=async(id:string)=>{
     return await getData(`/posts/${id}`)
 }
+
+export const Mypost=async(name:string,email:string)=>{
+    if(!name || !email){
+        return
+    }
+return getData(`/myPost?authorName=${name}&?authorEmail=${email}`)
+}
